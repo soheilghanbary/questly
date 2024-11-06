@@ -1,7 +1,9 @@
+import { PrismaAdapter } from '@auth/prisma-adapter';
 import type { NextAuthConfig } from 'next-auth';
 import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
+import { prisma } from '../server/db';
 
 declare module 'next-auth' {
   interface Session {
@@ -10,6 +12,7 @@ declare module 'next-auth' {
 }
 
 export const authOptions: NextAuthConfig = {
+  adapter: PrismaAdapter(prisma),
   trustHost: true,
   session: { strategy: 'jwt' },
   experimental: { enableWebAuthn: true },
