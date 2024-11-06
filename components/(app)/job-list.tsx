@@ -1,4 +1,4 @@
-import { Banknote, ClockIcon, MapPin } from 'lucide-react';
+import { ClockIcon, ExternalLink, MapPin } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Separator } from '../ui/separator';
 
@@ -30,18 +30,23 @@ const JobCard = () => (
     </p>
     <div className="flex flex-wrap items-center gap-4">
       <p className="flex items-center gap-1 text-muted-foreground text-xs">
-        <MapPin className="size-4" />
+        <MapPin className="size-3.5" />
         Tehra, IRAN
       </p>
       <Separator orientation="vertical" className="h-4" />
       <p className="flex items-center gap-1 text-muted-foreground text-xs">
-        <Banknote className="size-4" />
-        100,000 USD
+        <ClockIcon className="size-3.5" />3 minutes ago
       </p>
       <Separator orientation="vertical" className="h-4" />
-      <p className="flex items-center gap-1 text-muted-foreground text-xs">
-        <ClockIcon className="size-4" />3 minutes ago
-      </p>
+      <a
+        target="_blank"
+        rel="noreferrer"
+        href="https://kianertebat.co"
+        className='flex items-center gap-1 font-medium text-primary text-xs'
+      >
+        <ExternalLink className="size-3.5" />
+        kianertebat.co
+      </a>
     </div>
     <div className="flex items-center gap-2">
       <span className="rounded-md bg-muted px-3 py-1.5 font-medium text-foreground/80 text-xs">
@@ -59,7 +64,7 @@ const JobCard = () => (
     </div>
     <Button
       variant={'secondary'}
-      className='right-4 bottom-4 lg:absolute lg:w-fit'
+      className="right-4 bottom-4 lg:absolute lg:w-fit"
     >
       Details
     </Button>

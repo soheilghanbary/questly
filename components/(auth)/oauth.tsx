@@ -8,7 +8,7 @@ export function OAuth() {
   const [pending, mutate] = useTransition();
 
   const handleLogin = async (provider: 'google' | 'github') => {
-    toast.loading('صبر کنید ...');
+    toast.loading('Waiting ...');
     mutate(async () => {
       await login(provider);
     });
@@ -21,14 +21,14 @@ export function OAuth() {
         variant={'outline'}
         onClick={() => handleLogin('github')}
       >
-        گیت هاب
+        GitHub
       </Button>
       <Button
         disabled={pending}
         variant={'outline'}
         onClick={() => handleLogin('google')}
       >
-        گوگل
+        Google
       </Button>
     </div>
   );

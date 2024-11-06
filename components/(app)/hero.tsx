@@ -1,6 +1,3 @@
-import { RocketIcon } from 'lucide-react';
-import { Button } from '../ui/button';
-
 export function Hero() {
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-2 py-20 text-center">
@@ -11,10 +8,6 @@ export function Hero() {
         Discover opportunities that fit you. Questly brings top jobs and talent
         together.
       </p>
-      <Button className="mx-auto mt-2 h-11 w-fit rounded-full">
-        <RocketIcon />
-        Get Started
-      </Button>
     </div>
   );
 }

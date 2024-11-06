@@ -18,7 +18,6 @@ export const TextField = forwardRef(function MyInput(
       <Label>{label}</Label>
       <Input
         type="text"
-        className="bg-muted/50"
         autoComplete="off"
         ref={ref}
         {...rest}

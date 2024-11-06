@@ -8,11 +8,11 @@ export function SearchJobs() {
         <input
           type="text"
           placeholder="Search jobs"
-          className='h-12 w-full grow: rounded-lg border border-border/40 p-4 pl-11 text-foreground shadow-sm outline-none ring-primary duration-100 focus:ring-2'
+          className='h-11 w-full grow rounded-lg border border-border/40 bg-background p-4 pl-11 text-foreground text-sm shadow-sm outline-none ring-primary duration-100 focus:ring-2'
         />
         <SearchIcon className="-translate-y-1/2 pointer-events-none absolute top-1/2 left-3.5 size-5 text-muted-foreground/50" />
       </div>
-      <Button className="h-12">Search</Button>
+      <Button className="h-11">Search</Button>
     </div>
   );
 }
