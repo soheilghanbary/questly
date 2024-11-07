@@ -1,66 +1,62 @@
+import { fromNow } from '@/lib/utils';
+import type { Job } from '@prisma/client';
 import { ClockIcon, ExternalLink, MapPin } from 'lucide-react';
+import Image from 'next/image';
 import { Button } from '../ui/button';
 import { Separator } from '../ui/separator';
 
-const JobCard = () => (
+const JobCard = ({ title, company, location, description, salary, jobType, logo, website, phone, email, tags, createdAt }: Job) => (
   <div className="relative flex flex-col gap-4 rounded-lg border border-border/40 p-4 shadow-sm">
     <div className="flex items-center gap-4">
-      <img
+      <Image
+        width={64}
+        height={64}
+        quality={100}
+        sizes='120px'
+        alt={company}
+        src={logo}
         className="size-16 rounded-lg"
-        alt="company name"
-        src="https://thumb2.jobinjacdn.com/j7nQQR3Rbs6CDVyKOyilAX4bcMI=/fit-in/128x128/filters:strip_exif():fill(transparent):quality(100)/https://mstorage2.jobinjacdn.com/other/files/uploads/images/9e47b404-c38f-43f7-b6b1-0b2e1ecdf877/main.png"
       />
       <div className="flex flex-col gap-1">
-        <h2 className="font-medium">Khanomi (Frontend Developer)</h2>
+        <h2 className="font-medium">{company} ({title})</h2>
         <div className="flex items-center gap-4">
           <p className="font-medium text-muted-foreground text-xs">
-            Salary: 100,000 $ / year
+            Salary: {salary} $ / year
           </p>
           <span className="rounded-md bg-amber-50 px-3 py-1.5 font-medium text-amber-500 text-xs">
-            Full-Part
+            {jobType}
           </span>
         </div>
       </div>
     </div>
-    <p className="line-clamp-2 text-muted-foreground text-xs/6">
-      We are looking for a Front-End Web Engineer who is motivated to combine
-      the art of design with the art of programming. As a member of the Frontend
-      team, you’ll be working on various projects with large-scale users by
-      collaborating with product stakeholders ( Design, Product, QA, Backend).
-    </p>
+    <p className="line-clamp-2 text-muted-foreground text-xs/6">{description}</p>
     <div className="flex flex-wrap items-center gap-4">
       <p className="flex items-center gap-1 text-muted-foreground text-xs">
         <MapPin className="size-3.5" />
-        Tehra, IRAN
+        {location}
       </p>
       <Separator orientation="vertical" className="h-4" />
       <p className="flex items-center gap-1 text-muted-foreground text-xs">
-        <ClockIcon className="size-3.5" />3 minutes ago
+        <ClockIcon className="size-3.5" />
+        {fromNow(createdAt)}
       </p>
       <Separator orientation="vertical" className="h-4" />
       <a
         target="_blank"
         rel="noreferrer"
-        href="https://kianertebat.co"
-        className='flex items-center gap-1 font-medium text-primary text-xs'
+        href={website}
+        className="flex items-center gap-1 font-medium text-primary text-xs"
       >
         <ExternalLink className="size-3.5" />
-        kianertebat.co
+        {website}
       </a>
     </div>
     <div className="flex items-center gap-2">
-      <span className="rounded-md bg-muted px-3 py-1.5 font-medium text-foreground/80 text-xs">
-        React.JS
-      </span>
-      <span className="rounded-md bg-muted px-3 py-1.5 font-medium text-foreground/80 text-xs">
-        TypeScript
-      </span>
-      <span className="rounded-md bg-muted px-3 py-1.5 font-medium text-foreground/80 text-xs">
-        Next.JS
-      </span>
-      <span className="rounded-md bg-muted px-3 py-1.5 font-medium text-foreground/80 text-xs">
-        TailwindCSS
-      </span>
+      {tags.map((t: any) => (
+        <span key={t.id} className="rounded-md bg-muted px-3 py-1.5 font-medium text-foreground/80 text-xs">
+          {t.text}
+        </span>
+      ))}
     </div>
     <Button
       variant={'secondary'}
@@ -71,15 +67,18 @@ const JobCard = () => (
   </div>
 );
 
-export function JobList() {
+type JobListProps = {
+  jobs: Job[];
+};
+
+export function JobList({ jobs }: JobListProps) {
   return (
     <section>
       <h6 className="my-4 text-muted-foreground text-sm">250 jobs results</h6>
       <div className="grid gap-4">
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
+        {jobs.map((job) => (
+          <JobCard key={job.id} {...job} />
+        ))}
       </div>
     </section>
   );

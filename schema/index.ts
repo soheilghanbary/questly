@@ -6,15 +6,14 @@ const jobSchema = z.object({
     .string()
     .min(20, 'Description must be at least 20 characters long.'),
   company: z.string().min(2, 'Company name must be at least 2 characters.'),
-  logo: z.string().url('Logo must be a valid URL.').optional(), // Optional URL for the company logo
+  logo: z.string().url('Logo must be a valid URL.'), // Optional URL for the company logo
   location: z.string().min(2, 'Location must be at least 2 characters.'),
-  salary: z.number().positive('Salary must be a positive number.').optional(),
-  jobType: z.enum(['Full-time', 'Part-time', 'Contract', 'Temporary']),
-  website: z.string().url('Website must be a valid URL.').optional(), // Replaces applicationLink with website
+  salary: z.number().positive('Salary must be a positive number.'),
+  jobType: z.string(),
+  website: z.string().url('Website must be a valid URL.'), // Replaces applicationLink with website
   phone: z
     .string()
-    .regex(/^(\+?\d{1,3}[-.\s]?)?\d{10}$/, 'Phone must be a valid number.')
-    .optional(),
+    .regex(/^(\+?\d{1,3}[-.\s]?)?\d{10}$/, 'Phone must be a valid number.'),
   email: z.string().email('Email must be a valid email address.'),
   tags: z.array(
     z.object({

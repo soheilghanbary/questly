@@ -6,7 +6,7 @@ export default function AppLayout({ children }: React.PropsWithChildren) {
     <>
       <div className="container">
         <Header />
-        <main className='min-h-screen p-4'>{children}</main>
+        <main className='container relative min-h-screen p-4'>{children}</main>
       </div>
       <Footer />
     </>

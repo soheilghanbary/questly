@@ -1,4 +1,5 @@
 'use client';
+import { EdgeStoreProvider } from '@/lib/edgestore';
 import { ThemeProvider } from 'next-themes';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import type { PropsWithChildren } from 'react';
@@ -7,13 +8,15 @@ import { ToastProvider } from './toast-provider';
 
 export default function Providers({ children }: PropsWithChildren) {
   return (
-    <NuqsAdapter>
-      <QueryProvider>
-        <ThemeProvider attribute="class" enableColorScheme defaultTheme="light">
-          {children}
-          <ToastProvider />
-        </ThemeProvider>
-      </QueryProvider>
-    </NuqsAdapter>
+    <EdgeStoreProvider>
+      <NuqsAdapter>
+        <QueryProvider>
+          <ThemeProvider attribute="class" enableColorScheme defaultTheme="light">
+            {children}
+            <ToastProvider />
+          </ThemeProvider>
+        </QueryProvider>
+      </NuqsAdapter>
+    </EdgeStoreProvider>
   );
 }

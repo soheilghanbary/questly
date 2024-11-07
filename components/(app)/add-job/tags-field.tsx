@@ -10,7 +10,7 @@ type Props = {
 export function TagsField({ value, onChange }: Props) {
   const [activeTagIndex, setActiveTagIndex] = useState<number | null>(null);
   return (
-    <div className="col-span-3 grid gap-2 [&_label]:text-sm">
+    <div className="col-span-2 grid gap-2 [&_label]:text-sm">
       <Label>Tags</Label>
       <TagInput
         tags={value}
